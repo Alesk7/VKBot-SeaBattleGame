@@ -9,7 +9,9 @@ import java.util.ArrayList;
  */
 
 public class SeaBattleGame {
-    public static final String IMG_RESULTS_PATH = "C:\\SeaBattle\\field.jpg";
+    private char[] letters = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'К'};
+    public static final String IMG_SOURCE_PATH = /**PATH TO SOURCE IMAGE*/;
+    public static final String IMG_RESULTS_PATH = /**PATH TO RESULT IMAGE*/;
 
     private static int[][] field = new int[10][10];
     private int[][] opponent_field = new int[10][10];
@@ -72,7 +74,7 @@ public class SeaBattleGame {
         System.out.println("\nShips:");
         for(Ship s : ships){
             for(int i = 0; i < s.coordinats.length; i++){
-                System.out.println(s.coordinats[i][0]+ " "+s.coordinats[i][1]);;
+                System.out.println(letters[s.coordinats[i][0]]+ " "+(s.coordinats[i][1]+1));
             }
         }
     }
@@ -144,7 +146,7 @@ public class SeaBattleGame {
 
     private void drawResults(){
         try {
-            BufferedImage img = ImageIO.read(new File(IMG_RESULTS_PATH));
+            BufferedImage img = ImageIO.read(new File(IMG_SOURCE_PATH));
             Graphics2D gr = img.createGraphics();
             gr.setFont(new Font("TimesRoman", Font.BOLD, 82));
             for(int i = 0; i < 10; i++){

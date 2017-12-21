@@ -29,8 +29,8 @@ public class VKAPI {
     public static String VKUSERID = "user_id";
     public static String VKFRIENDID = "friend_id";
 
-    private final Integer APP_ID = 5888890;
-    private final String TOKEN = "0211b040bd9a37c7bb0e09cf158c807c21a4bbd77adff19093dce8242559e7e3eba8b473d513cf9737b08";
+    private final Integer APP_ID = /**YOUR APP ID*/;
+    private final String TOKEN = /**YOUR TOKEN*/;
     private VkApiClient vk;
     private UserActor actor;
     private long ts;
