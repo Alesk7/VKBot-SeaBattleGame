@@ -9,12 +9,42 @@ import java.util.ArrayList;
  */
 
 public class SeaBattleGame {
+    public static final String IMG_RESULTS_PATH = "C:\\SeaBattle\\field.jpg";
+
     private static int[][] field = new int[10][10];
     private int[][] opponent_field = new int[10][10];
     private ArrayList<Ship> ships = new ArrayList<>();
+
     int[] previous_attack = new int[2];
-    String opponent_answer; boolean is_killing = false; int[] what_was_increased = new int[4]; int last_increase, how_increase;
+    String opponent_answer;
+    boolean is_killing = false;
+    int[] what_was_increased = new int[4];
+    int last_increase, how_increase;
     boolean success_killing = false;
+
+    private static class Ship{
+        private int[][] coordinats;
+
+        Ship(int cells){
+            coordinats = new int[cells][2];
+        }
+
+        int getX(int cell){
+            return coordinats[cell][0];
+        }
+
+        int getY(int cell){
+            return coordinats[cell][1];
+        }
+
+        void setX(int cell, int value){
+            coordinats[cell][0] = value;
+        }
+
+        void setY(int cell, int value){
+            coordinats[cell][1] = value;
+        }
+    }
 
     public SeaBattleGame(){
         for(int i = 0; i < 10; i++)
@@ -114,7 +144,7 @@ public class SeaBattleGame {
 
     private void drawResults(){
         try {
-            BufferedImage img = ImageIO.read(new File("C:\\SeaBattle\\field.jpg"));
+            BufferedImage img = ImageIO.read(new File(IMG_RESULTS_PATH));
             Graphics2D gr = img.createGraphics();
             gr.setFont(new Font("TimesRoman", Font.BOLD, 82));
             for(int i = 0; i < 10; i++){
@@ -131,7 +161,7 @@ public class SeaBattleGame {
                     }
                 }
             }
-            ImageIO.write(img, "jpg", new File("C:\\SeaBattle\\filled_field.jpg"));
+            ImageIO.write(img, "jpg", new File(IMG_RESULTS_PATH));
             gr.dispose();
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -145,14 +175,6 @@ public class SeaBattleGame {
     private int ycell(int c){
         return ((c*100)+50)+(115+27);
     }
-
-
-
-
-
-
-
-
 
     public String checkAttack(String msg){
         StringBuilder s = new StringBuilder(msg);
@@ -212,18 +234,6 @@ public class SeaBattleGame {
         }
         return result;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     private boolean initialize(){
         ArrayList<int[]> engaged = new ArrayList<>();
@@ -311,35 +321,5 @@ public class SeaBattleGame {
             }
         }
         return result;
-    }
-
-
-
-
-
-
-
-    private static class Ship{
-        private int[][] coordinats;
-
-        Ship(int cells){
-            coordinats = new int[cells][2];
-        }
-
-        int getX(int cell){
-            return coordinats[cell][0];
-        }
-
-        int getY(int cell){
-            return coordinats[cell][1];
-        }
-
-        void setX(int cell, int value){
-            coordinats[cell][0] = value;
-        }
-
-        void setY(int cell, int value){
-            coordinats[cell][1] = value;
-        }
     }
 }
